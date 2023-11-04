@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Notes</string>
+    <string name="next">अगला</string>
+    <string name="previous">पिछला</string>
+    <string name="messages_header">संदेश</string>
+    <string name="app_settings">एप्लिकेशन सेटिंग</string>
+    <string name="locale">" स्थानीय भाषा"</string>
+    <string name="english">अंग्रेज़ी</string>
+    <string name="theme">ऐप थीम</string>
+    <string name="day">दिन</string>
+    <string name="dataDelete">सभी नोट हटाएँ</string>
+    <string name="emptyNotes">यह दिखता है आपके पास नहीं है कोई बनाया टिप्पणियाँ</string>
+    <string name="unNamedNote">अनाम नोट</string>
+    <string name="writeNote">"अपने विचार यहां लिखें "</string>
+    <string name="hindi">हिंदी</string>
+    <string name="warn">" अपना नोट हटाएँ"</string>
+    <string name="conformWarn">क्या आप वाकई अपना नोट हटाना चाहते हैं.</string>
+    <string name="discard">परिवर्तनों को निरस्त करें</string>
+    <string name="confirmDiscard">" आपके परिवर्तन सहेजे नहीं गए"</string>
+</resources>

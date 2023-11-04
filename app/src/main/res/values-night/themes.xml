@@ -1,0 +1,50 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MyNotes" parent="Theme.Material3.Dark.NoActionBar">
+
+        <!-- Primary brand color. -->
+
+        <item name="android:statusBarColor">@color/primaryDark</item>
+
+        <item name="colorSurface">@color/primaryDark</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSurfaceVariant">@color/secondary</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+
+
+        <item name="android:colorBackground">@color/primaryDark</item>
+        <item name="android:textColor">@color/headingText</item>
+        <item name="colorPrimaryDark">@color/primary</item>
+        <item name="colorPrimary">@color/primary</item>
+
+
+        <item name="colorPrimaryContainer">@color/primary</item>
+        <item name="colorOnPrimaryContainer">@color/primaryDark</item>
+
+<!--        <item name="materialCardViewStyle">@style/ThemeOverlay.App.Card</item>-->
+        <item name="colorOutline">@color/secondary</item>
+
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+
+
+    </style>
+
+<!--    Material Dialog-->
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/primaryDark</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorSurface">@color/primary</item>
+<!--        <item name="colorOnSurface">@color/heading</item>-->
+<!--        <item name="colorSurfaceVariant">@color/headingText</item>-->
+<!--        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>-->
+<!--        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>-->
+<!--        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button</item>-->
+<!--        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.Button</item>-->
+    </style>
+
+<!--    Material Card-->
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+</resources>

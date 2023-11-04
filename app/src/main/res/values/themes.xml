@@ -1,0 +1,30 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.MyNotes" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+
+        <!--        <item name="android:statusBarColor">@color/primary</item>-->
+
+        <item name="colorPrimary">@color/white</item>
+<!--        <item name="colorPrimaryDark">@color/primaryDark</item>-->
+<!--        <item name="android:backgroundTint">@color/dayBackground</item>-->
+        <item name="colorPrimaryContainer">@color/primary</item>
+        <item name="colorOnPrimaryContainer">@color/colorAction</item>
+
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+
+    </style>
+
+    <!--    Material Dialog-->
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/colorAction</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorSurface">@color/primary</item>
+        <!--        <item name="colorOnSurface">@color/heading</item>-->
+        <item name="colorSurfaceVariant">@color/headingText</item>
+        <!--        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>-->
+        <!--        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>-->
+        <!--        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button</item>-->
+        <!--        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.Button</item>-->
+    </style>
+</resources>

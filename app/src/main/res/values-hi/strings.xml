@@ -10,7 +10,7 @@
     <string name="theme">ऐप थीम</string>
     <string name="day">दिन</string>
     <string name="dataDelete">सभी नोट हटाएँ</string>
-    <string name="emptyNotes">यह दिखता है आपके पास नहीं है कोई बनाया टिप्पणियाँ</string>
+    <string name="emptyNotes">आपने कोई नोट्स नहीं बनाया है</string>
     <string name="unNamedNote">अनाम नोट</string>
     <string name="writeNote">"अपने विचार यहां लिखें "</string>
     <string name="hindi">हिंदी</string>

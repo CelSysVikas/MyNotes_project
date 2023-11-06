@@ -1,13 +1,16 @@
 package me.vikas.mynotes.Activity;
 
+import static me.vikas.mynotes.Config.saveLocale;
+import static me.vikas.mynotes.Config.saveTheme;
+
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.databinding.DataBindingUtil;
@@ -16,7 +19,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Locale;
 
-import me.vikas.mynotes.AppPrefrence;
+import me.vikas.mynotes.AppPreference;
 import me.vikas.mynotes.R;
 import me.vikas.mynotes.Room.RoomHelper;
 import me.vikas.mynotes.databinding.ActivityAppSettingsBinding;
@@ -24,7 +27,7 @@ import me.vikas.mynotes.databinding.ActivityAppSettingsBinding;
 public class AppSettingsActivity extends AppCompatActivity {
     private ActivityAppSettingsBinding dataBinding;
     private RoomHelper helper;
-//    private AppPrefrence appPrefrence=new AppPrefrence(getApplicationContext());
+    private AppPreference appPrefrence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +36,23 @@ public class AppSettingsActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         dataBinding.navigationBar.setNavigationOnClickListener(v -> finish());
 
+        appPrefrence = AppPreference.getInstance(getApplicationContext());
         helper = RoomHelper.getInstance(this);
-//        saveLocale(this,appPrefrence.getLoalePreference());
-
-//        if (appPrefrence.getLoalePreference()=="en")
-//            dataBinding.setCurrentLocale(getString(R.string.english));
-//        if (appPrefrence.getLoalePreference()=="hi")
-//            dataBinding.setCurrentLocale(getString(R.string.hindi));
 
 
-
-       initAppLocale();
-
+        initPreference();
+        initAppLocale();
         initTheme();
         initDelete();
+    }
+
+    private void initPreference() {
+        saveLocale(this, appPrefrence.getLocalePreference());
+        dataBinding.setCurrentLocale(appPrefrence.getLocalePreference());
+
+        if (appPrefrence.getThemePreference())
+            dataBinding.setCurrentTheme("Day");
+        else dataBinding.setCurrentTheme("Night");
     }
 
     private void initDelete() {
@@ -66,17 +72,19 @@ public class AppSettingsActivity extends AppCompatActivity {
     private void initTheme() {
         dataBinding.appTheme.setOnClickListener(v -> {
 
-            String[] theme = {"Day","Night"};
+            String[] theme = {"Day", "Night"};
             MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
             dialogBuilder.setTitle("Pick Language");
             dialogBuilder.setItems(theme, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == 0) {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        saveTheme(AppSettingsActivity.this,true);
+                        appPrefrence.setThemePreference(true);
                     }
-                    if (which==1){
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    if (which == 1) {
+                        saveTheme(AppSettingsActivity.this,false);
+                        appPrefrence.setThemePreference(false);
                     }
                 }
             });
@@ -88,7 +96,7 @@ public class AppSettingsActivity extends AppCompatActivity {
 
     private void initAppLocale() {
         dataBinding.appLocale.setOnClickListener(v -> {
-            String[] language = {"English","Hindi"};
+            String[] language = {"English", "Hindi"};
             MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
             dialogBuilder.setTitle("Pick Language");
             dialogBuilder.setItems(language, new DialogInterface.OnClickListener() {
@@ -96,11 +104,13 @@ public class AppSettingsActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == 0) {
                         saveLocale(AppSettingsActivity.this, "en");
+                        appPrefrence.setLocalePreference("en");
                         recreate();
                         dataBinding.setCurrentLocale(getString(R.string.english));
                     }
-                    if (which==1){
-                        saveLocale(AppSettingsActivity.this,"hi");
+                    if (which == 1) {
+                        saveLocale(AppSettingsActivity.this, "hi");
+                        appPrefrence.setLocalePreference("hi");
                         recreate();
                         dataBinding.setCurrentLocale(getString(R.string.hindi));
                     }
@@ -109,17 +119,5 @@ public class AppSettingsActivity extends AppCompatActivity {
             dialogBuilder.show();
 
         });
-    }
-
-    void saveLocale(Activity activity, String langCode){
-        Locale locale=new Locale(langCode);
-        locale.setDefault(locale);
-
-        Resources resources=activity.getResources();
-        Configuration configuration=resources.getConfiguration();
-        configuration.setLocale(locale);
-        resources.updateConfiguration(configuration,resources.getDisplayMetrics());
-
-//        appPrefrence.localePreference(langCode);
     }
 }

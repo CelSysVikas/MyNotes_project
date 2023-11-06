@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -56,8 +57,13 @@ public class NoteEditorActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.itemSave) {
-                    helper.getDao().newNote(new Notes(dataBinding.tvNoteTitle.getText().toString(), dataBinding.tvNoteContent.getText().toString(), currentDateTime));
-                    finish();
+                    if (!dataBinding.tvNoteTitle.getText().toString().trim().isEmpty() || !dataBinding.tvNoteContent.getText().toString().trim().isEmpty()) {
+                        helper.getDao().newNote(new Notes(dataBinding.tvNoteTitle.getText().toString(), dataBinding.tvNoteContent.getText().toString(), currentDateTime));
+                        finish();
+                    } else{
+                        dataBinding.tvNoteTitle.setError("");
+                        Toast.makeText(NoteEditorActivity.this, getString(R.string.emptyNotes), Toast.LENGTH_SHORT).show();
+                    }
                 }
                 if (item.getItemId() == R.id.itemDelete) {
                     MaterialAlertDialogBuilder dialog=new MaterialAlertDialogBuilder(NoteEditorActivity.this);

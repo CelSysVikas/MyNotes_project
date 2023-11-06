@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
 
         dataBinding.fabAddNote.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NoteEditorActivity.class)));
 
-        initNavbar();
         initRecyclerView();
+        initNavbar();
 
     }
 
@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
                     dataBinding.tvNoData.setVisibility(View.GONE);
                     dataBinding.rvNotes.setVisibility(View.VISIBLE);
                     dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this, notes, MainActivity.this));
+                }else {
+                    dataBinding.tvNoData.setVisibility(View.VISIBLE);
+                    dataBinding.rvNotes.setVisibility(View.GONE);
                 }
             }
         });

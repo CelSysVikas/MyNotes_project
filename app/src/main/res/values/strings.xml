@@ -37,7 +37,7 @@
     <string name="theme">Theme</string>
     <string name="day">Day</string>
     <string name="dataDelete">Delete all Notes</string>
-    <string name="emptyNotes">This Looks\nYou not have\ncreated any\nNotes</string>
+    <string name="emptyNotes">You don\'t have\ncreated any\nNotes</string>
     <string name="unNamedNote">Unnamed Note</string>
     <string name="writeNote">Write your Thoughts Here</string>
     <string name="hindi">Hindi</string>

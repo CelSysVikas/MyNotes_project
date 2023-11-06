@@ -17,4 +17,12 @@
 
     <color name="dayBackground">#F4E04D</color>
 
+
+    <color name="color1">#ffbaa0</color>
+    <color name="color2">#ccff33</color>
+    <color name="color3">#83c5be</color>
+    <color name="color4">#D5B9B2</color>
+    <color name="color5">#FCF6B1</color>
+
+
 </resources>

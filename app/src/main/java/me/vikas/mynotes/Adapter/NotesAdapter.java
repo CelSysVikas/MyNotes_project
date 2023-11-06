@@ -1,13 +1,15 @@
 package me.vikas.mynotes.Adapter;
 
+import static androidx.core.content.ContextCompat.getColor;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -21,14 +23,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     private Context context;
     private List<Notes> list;
     private ItemHandler itemClick;
-    private int[] color = {R.color.dayBackground,
-                            R.color.primaryDark,
-                            R.color.secondaryDark,
-                            R.color.white,
-                            R.color.black,
-                            R.color.colorAction,
-                            R.color.heading};
-    private int notePinned=R.color.cardPinned;
+    private int[] color = {R.color.color1,
+                            R.color.color2,
+                            R.color.color3,
+                            R.color.color4,
+                            R.color.color5};
 
     public NotesAdapter(Context context, List<Notes> list, ItemHandler itemClick) {
         this.context = context;
@@ -53,8 +52,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
         if (list.get(position).isNotePinned())
             holder.noteBinding.cvBackground.setBackgroundColor(context.getColor(R.color.cardPinned));
-        else
-            holder.noteBinding.cvBackground.setBackgroundColor(color[random.nextInt(color.length)]);
+        else {
+            int colorResId = color[random.nextInt(color.length)];
+            holder.noteBinding.cvBackground.setBackgroundColor(getColor(context, colorResId));
+        }
     }
 
     @Override

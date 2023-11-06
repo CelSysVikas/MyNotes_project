@@ -19,6 +19,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -27,6 +28,7 @@
                 android:layout_height="wrap_content"
                 app:menu="@menu/nav_note_editor"
                 app:navigationIcon="@drawable/ic_arrow_left" />
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView

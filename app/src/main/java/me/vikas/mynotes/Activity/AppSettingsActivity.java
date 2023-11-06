@@ -31,7 +31,9 @@ public class AppSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_app_settings);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        dataBinding.navigationBar.setNavigationOnClickListener(v -> finish());
 
+        helper = RoomHelper.getInstance(this);
 //        saveLocale(this,appPrefrence.getLoalePreference());
 
 //        if (appPrefrence.getLoalePreference()=="en")
@@ -39,10 +41,52 @@ public class AppSettingsActivity extends AppCompatActivity {
 //        if (appPrefrence.getLoalePreference()=="hi")
 //            dataBinding.setCurrentLocale(getString(R.string.hindi));
 
-        dataBinding.navigationBar.setNavigationOnClickListener(v -> finish());
 
-        helper = RoomHelper.getInstance(this);
 
+       initAppLocale();
+
+        initTheme();
+        initDelete();
+    }
+
+    private void initDelete() {
+        dataBinding.deleteNotes.setOnClickListener(v -> {
+            new MaterialAlertDialogBuilder(this).setCancelable(false)
+                    .setTitle("Delete Your Notes")
+                    .setMessage("Are you really want to Delete... Your Notes")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        helper.getDao().deleteData();
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                    .show();
+        });
+
+    }
+
+    private void initTheme() {
+        dataBinding.appTheme.setOnClickListener(v -> {
+
+            String[] theme = {"Day","Night"};
+            MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
+            dialogBuilder.setTitle("Pick Language");
+            dialogBuilder.setItems(theme, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (which == 0) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    }
+                    if (which==1){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    }
+                }
+            });
+            dialogBuilder.show();
+
+        });
+
+    }
+
+    private void initAppLocale() {
         dataBinding.appLocale.setOnClickListener(v -> {
             String[] language = {"English","Hindi"};
             MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
@@ -65,38 +109,6 @@ public class AppSettingsActivity extends AppCompatActivity {
             dialogBuilder.show();
 
         });
-
-        dataBinding.appTheme.setOnClickListener(v -> {
-
-            String[] theme = {"Day","Night"};
-            MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
-            dialogBuilder.setTitle("Pick Language");
-            dialogBuilder.setItems(theme, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (which == 0) {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    }
-                    if (which==1){
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    }
-                }
-            });
-            dialogBuilder.show();
-
-        });
-
-        dataBinding.deleteNotes.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(this).setCancelable(false)
-                    .setTitle("Delete Your Notes")
-                    .setMessage("Are you really want to Delete... Your Notes")
-                    .setPositiveButton("Delete", (dialog, which) -> {
-                        helper.getDao().deleteData();
-                    })
-                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                    .show();
-        });
-
     }
 
     void saveLocale(Activity activity, String langCode){

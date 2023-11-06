@@ -3,8 +3,9 @@
     <color name="primary">#F8FBFC</color>
     <color name="primaryDark">#E9F0FF</color>
     <color name="secondary">#FF6200EE</color>
-    <color name="secondaryDark">#FF3700B3</color>
+    <color name="secondaryDark">#78cad2</color>
 
+    <color name="cardPinned">#4CAF50</color>
     <color name="colorAction">#4B4959</color>
 
     <color name="heading">#ffffff</color>
@@ -12,7 +13,7 @@
     <color name="headingText">#dfdfdf</color>
 
     <color name="white">#ffffff</color>
-    <color name="blac">#000000</color>
+    <color name="black">#000000</color>
 
     <color name="dayBackground">#F4E04D</color>
 

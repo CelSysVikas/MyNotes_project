@@ -26,18 +26,15 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:theme="@style/Theme.MaterialComponents.DayNight"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            android:background="@android:color/transparent">
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/navigationView"
                     app:navigationIcon="@drawable/ic_arrow_left"
-                    app:title="@{noteTitle}"
-                    android:fitsSystemWindows="true"
-                    app:layout_collapseMode="pin"/>
+                    app:title="@{noteTitle}"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 

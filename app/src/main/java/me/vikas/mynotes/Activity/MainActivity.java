@@ -36,30 +36,12 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
 
         dataBinding.fabAddNote.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NoteEditorActivity.class)));
 
-        dataBinding.navigationBar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.navSettings) {
-                startActivity(new Intent(MainActivity.this, AppSettingsActivity.class));
-                return true;
-            }
-            if (item.getItemId() == R.id.navSearch) {
-                SearchView searchView = (SearchView) item.getActionView();
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        List<Notes> list = helper.getDao().searchData(query);
-                        dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this,list,MainActivity.this));
-                        return true;
-                    }
+        initNavbar();
+        initRecyclerView();
 
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        return false;
-                    }
-                });
-            }
-            return false;
-        });
+    }
 
+    private void initRecyclerView() {
         dataBinding.rvNotes.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         helper = RoomHelper.getInstance(this);
         helper.getDao().getNotes().observe(this, new Observer<List<Notes>>() {
@@ -72,21 +54,32 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
                 }
             }
         });
+    }
 
+    private void initNavbar() {
+        dataBinding.navigationBar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.navSettings) {
+                startActivity(new Intent(MainActivity.this, AppSettingsActivity.class));
+                return true;
+            }
+            if (item.getItemId() == R.id.navSearch) {
+                SearchView searchView = (SearchView) item.getActionView();
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        List<Notes> list = helper.getDao().searchData("%"+query+"%");
+                        dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this,list,MainActivity.this));
+                        return true;
+                    }
 
-//        listViewModel= new ViewModelProvider(this).get(NotesListViewModel.class);
-//        listViewModel.getNotes(this).observe(this, new Observer<List<Notes>>() {
-//            @Override
-//            public void onChanged(List<Notes> notes) {
-//                if (!notes.isEmpty()){
-//                    dataBinding.tvNoData.setVisibility(View.GONE);
-//                    dataBinding.rvNotes.setVisibility(View.VISIBLE);
-//                    dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this,notes, MainActivity.this));
-//                }
-//            }
-//        });
-
-
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        return false;
+                    }
+                });
+            }
+            return false;
+        });
     }
 
     @Override
@@ -124,5 +117,16 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .show();
+    }
+
+    @Override
+    public void onCardPin(int position, Notes notes) {
+        if (!notes.isNotePinned())
+            notes.setNotePinned(true);
+        else
+            notes.setNotePinned(false);
+
+        helper.getDao().updateNote(notes);
+        dataBinding.rvNotes.getAdapter().notifyItemChanged(position);
     }
 }

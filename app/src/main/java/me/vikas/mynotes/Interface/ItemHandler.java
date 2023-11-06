@@ -8,4 +8,6 @@ public interface ItemHandler {
     void onEditButtonClick(int position, int id);
     void onCopyButtonClick(int position, Notes notes);
     void onDeleteButtonClick(int position, Notes notes);
+
+    void onCardPin(int position, Notes notes);
 }

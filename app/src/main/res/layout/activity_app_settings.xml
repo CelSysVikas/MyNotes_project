@@ -23,7 +23,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:theme="@style/Theme.MaterialComponents.DayNight"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -32,6 +32,10 @@
                 android:layout_height="wrap_content"
                 app:navigationIcon="@drawable/ic_arrow_left"
                 app:title="@string/app_settings" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView

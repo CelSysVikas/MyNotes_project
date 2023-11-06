@@ -1,8 +1,13 @@
 package me.vikas.mynotes.Model;
 
+import android.annotation.SuppressLint;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import me.vikas.mynotes.Config;
 
@@ -21,14 +26,19 @@ public class Notes {
     @ColumnInfo(name = Config.COLUMN_DATE_TIME)
     private String dateTime;
 
+    @ColumnInfo(name = "pinned_note")
+    private boolean isNotePinned;
+
     public Notes(String title, String content, String dateTime) {
         this.title = title;
         this.content = content;
         this.dateTime = dateTime;
+        this.isNotePinned=false;
     }
 
     public static Notes copyNote(Notes notes) {
-        return new Notes(notes.title, notes.content, notes.dateTime);
+        @SuppressLint("SimpleDateFormat") String currentDateTime = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
+        return new Notes(notes.title, notes.content, currentDateTime);
     }
 
     public int getId() {
@@ -61,5 +71,13 @@ public class Notes {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public boolean isNotePinned() {
+        return isNotePinned;
+    }
+
+    public void setNotePinned(boolean notePinned) {
+        isNotePinned = notePinned;
     }
 }

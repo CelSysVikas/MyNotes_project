@@ -13,8 +13,12 @@ A notes app is a versatile and essential tool for anyone looking to organize and
 
 
 ## Libraries Used
+- Room Database
+- Room Live Data
+- MVVM Architecture
+- Material3 Design 
 
-#### Dependencies used
+#### Dependencies 
 
 ```http
       // Room library

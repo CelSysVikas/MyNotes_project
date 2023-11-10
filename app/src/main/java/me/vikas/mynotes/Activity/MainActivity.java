@@ -28,6 +28,7 @@ import me.vikas.mynotes.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity implements ItemHandler {
     private ActivityMainBinding dataBinding;
     private RoomHelper helper;
+    private NotesListViewModel notesListViewModel;
     private List<Notes> notesList=new ArrayList<>();
 
     @Override
@@ -45,15 +46,31 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
 
     private void initRecyclerView() {
         dataBinding.rvNotes.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        helper = RoomHelper.getInstance(this);
-        helper.getDao().getNotes().observe(this, new Observer<List<Notes>>() {
+//        helper = RoomHelper.getInstance(this);
+//        helper.getDao().getNotes().observe(this, new Observer<List<Notes>>() {
+//            @Override
+//            public void onChanged(List<Notes> notes) {
+//                if (!notes.isEmpty()) {
+//                    notesList.addAll(notes);
+//                    dataBinding.tvNoData.setVisibility(View.GONE);
+//                    dataBinding.rvNotes.setVisibility(View.VISIBLE);
+//                    dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this, notes, MainActivity.this));
+//                }else {
+//                    dataBinding.tvNoData.setVisibility(View.VISIBLE);
+//                    dataBinding.rvNotes.setVisibility(View.GONE);
+//                }
+//            }
+//        });
+
+        notesListViewModel=new ViewModelProvider(this).get(NotesListViewModel.class);
+        notesListViewModel.list.observe(this, new Observer<List<Notes>>() {
             @Override
-            public void onChanged(List<Notes> notes) {
-                if (!notes.isEmpty()) {
-                    notesList.addAll(notes);
+            public void onChanged(List<Notes> list) {
+                if (!list.isEmpty()) {
+                    notesList.addAll(list);
                     dataBinding.tvNoData.setVisibility(View.GONE);
                     dataBinding.rvNotes.setVisibility(View.VISIBLE);
-                    dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this, notes, MainActivity.this));
+                    dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this, list, MainActivity.this));
                 }else {
                     dataBinding.tvNoData.setVisibility(View.VISIBLE);
                     dataBinding.rvNotes.setVisibility(View.GONE);

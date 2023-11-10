@@ -20,7 +20,7 @@ A notes app is a versatile and essential tool for anyone looking to organize and
 
 #### Dependencies 
 
-```http
+```
       // Room library
     implementation "androidx.room:room-runtime:2.6.0"  // Use the latest version
 

@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="noteTitle"
             type="String" />
+
         <variable
             name="noteContent"
             type="String" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Activity.NoteEditorActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/tbNavigationBar"
@@ -49,11 +52,12 @@
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/open_sans_bold"
                     android:hint="@string/unNamedNote"
-                    android:text="@{noteTitle}"
                     android:padding="5dp"
+                    android:maxLength="50"
                     android:singleLine="false"
+                    android:text="@{noteTitle}"
                     android:textSize="30dp"
-                    app:errorEnabled="true"/>
+                    app:errorEnabled="true" />
 
                 <EditText
                     android:id="@+id/tvNoteContent"
@@ -62,11 +66,53 @@
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/open_sans_medium"
                     android:hint="@string/writeNote"
-                    android:text="@{noteContent}"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:text="@{noteContent}" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center">
+
+            <Button
+                android:onClick="onClick"
+                android:id="@+id/btnColor1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/color1" />
+
+            <Button
+                android:onClick="onClick"
+                android:id="@+id/btnColor2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/color3" />
+
+            <Button
+                android:onClick="onClick"
+                android:id="@+id/btnColor3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/color4" />
+
+            <Button
+                android:onClick="onClick"
+                android:id="@+id/btnColor4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/color5" />
+        </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

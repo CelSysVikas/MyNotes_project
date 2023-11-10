@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import me.vikas.mynotes.Config;
 import me.vikas.mynotes.Model.Notes;
 
-@Database(entities = Notes.class, exportSchema = false, version = 2)
+@Database(entities = Notes.class, exportSchema = false, version = 6)
 public abstract class RoomHelper extends RoomDatabase {
 
     private static RoomHelper instance;

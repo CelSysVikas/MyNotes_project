@@ -15,6 +15,8 @@ public class Config {
     public static final String COLUMN_TITLE="title";
     public static final String COLUMN_CONTENT="content";
     public static final String COLUMN_DATE_TIME="date_time";
+    public static final String COLUMN_COLOR_CODE="color_code";
+    public static final String COLUMN_NOTE_PINNED="pinned_note";
 
     public static void saveLocale(@NonNull Activity activity, String langCode) {
         Locale locale = new Locale(langCode);

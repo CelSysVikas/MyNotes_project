@@ -9,4 +9,11 @@
 
     <color name="heading">#ECECEC</color>
     <color name="headingText">#dfdfdf</color>
+
+
+    <color name="color1">#664a40</color>
+    <color name="color2">#29330a</color>
+    <color name="color3">#1a2726</color>
+    <color name="color4">#2b2524</color>
+    <color name="color5">#323123</color>
 </resources>

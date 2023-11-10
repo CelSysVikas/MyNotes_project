@@ -1,5 +1,7 @@
 package me.vikas.mynotes.Interface;
 
+import java.util.List;
+
 import me.vikas.mynotes.Model.Notes;
 
 public interface ItemHandler {
@@ -9,5 +11,5 @@ public interface ItemHandler {
     void onCopyButtonClick(int position, Notes notes);
     void onDeleteButtonClick(int position, Notes notes);
 
-    void onCardPin(int position, Notes notes);
+    void onCardPin(int position, Notes notes, List<Notes> list);
 }

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import me.vikas.mynotes.Adapter.NotesAdapter;
@@ -26,7 +28,7 @@ import me.vikas.mynotes.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity implements ItemHandler {
     private ActivityMainBinding dataBinding;
     private RoomHelper helper;
-    private NotesListViewModel listViewModel;
+    private List<Notes> notesList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
             @Override
             public void onChanged(List<Notes> notes) {
                 if (!notes.isEmpty()) {
+                    notesList.addAll(notes);
                     dataBinding.tvNoData.setVisibility(View.GONE);
                     dataBinding.rvNotes.setVisibility(View.VISIBLE);
                     dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this, notes, MainActivity.this));
@@ -123,9 +126,12 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
     }
 
     @Override
-    public void onCardPin(int position, Notes notes) {
-        if (!notes.isNotePinned())
+    public void onCardPin(int position, Notes notes, List<Notes> list) {
+        if (!notes.isNotePinned()) {
             notes.setNotePinned(true);
+            list.remove(notes);
+            list.add(0,notes);
+        }
         else
             notes.setNotePinned(false);
 

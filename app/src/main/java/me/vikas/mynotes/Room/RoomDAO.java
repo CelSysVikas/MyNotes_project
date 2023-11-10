@@ -15,7 +15,7 @@ import me.vikas.mynotes.Model.Notes;
 @Dao
 public interface RoomDAO {
 
-    @Query("Select * from "+ Config.TABLE_NAME)
+    @Query("Select * from "+ Config.TABLE_NAME+" order by "+ Config.COLUMN_NOTE_PINNED+" desc")
     LiveData<List<Notes>> getNotes();
 
     @Insert

@@ -15,7 +15,7 @@
         <item name="android:colorBackground">@color/primaryDark</item>
         <item name="android:textColor">@color/headingText</item>
         <item name="colorPrimaryDark">@color/primary</item>
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/headingText</item>
 
 
         <item name="colorPrimaryContainer">@color/primary</item>

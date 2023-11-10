@@ -26,8 +26,12 @@ public class Notes {
     @ColumnInfo(name = Config.COLUMN_DATE_TIME)
     private String dateTime;
 
-    @ColumnInfo(name = "pinned_note")
+    @ColumnInfo(name=Config.COLUMN_COLOR_CODE)
+    private int colorCode;
+
+    @ColumnInfo(name = Config.COLUMN_NOTE_PINNED)
     private boolean isNotePinned;
+
 
     public Notes(String title, String content, String dateTime) {
         this.title = title;
@@ -79,5 +83,13 @@ public class Notes {
 
     public void setNotePinned(boolean notePinned) {
         isNotePinned = notePinned;
+    }
+
+    public int getColorCode() {
+        return colorCode;
+    }
+
+    public void setColorCode(int colorCode) {
+        this.colorCode = colorCode;
     }
 }

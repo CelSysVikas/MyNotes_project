@@ -41,6 +41,8 @@ A notes app is a versatile and essential tool for anyone looking to organize and
 
 ## Screenshots
 
+
+
 ![App Screenshot](https://raw.githubusercontent.com/CelSysVikas/MyNotes_project/master/image1.png)
 
 ![App Screenshot](https://raw.githubusercontent.com/CelSysVikas/MyNotes_project/master/image2.png)

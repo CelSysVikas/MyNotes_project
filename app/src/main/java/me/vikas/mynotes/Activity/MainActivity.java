@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         dataBinding.fabAddNote.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NoteEditorActivity.class)));
-
+        helper = RoomHelper.getInstance(this);
         initRecyclerView();
         initNavbar();
 
@@ -46,22 +46,6 @@ public class MainActivity extends AppCompatActivity implements ItemHandler {
 
     private void initRecyclerView() {
         dataBinding.rvNotes.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-//        helper = RoomHelper.getInstance(this);
-//        helper.getDao().getNotes().observe(this, new Observer<List<Notes>>() {
-//            @Override
-//            public void onChanged(List<Notes> notes) {
-//                if (!notes.isEmpty()) {
-//                    notesList.addAll(notes);
-//                    dataBinding.tvNoData.setVisibility(View.GONE);
-//                    dataBinding.rvNotes.setVisibility(View.VISIBLE);
-//                    dataBinding.rvNotes.setAdapter(new NotesAdapter(MainActivity.this, notes, MainActivity.this));
-//                }else {
-//                    dataBinding.tvNoData.setVisibility(View.VISIBLE);
-//                    dataBinding.rvNotes.setVisibility(View.GONE);
-//                }
-//            }
-//        });
-
         notesListViewModel=new ViewModelProvider(this).get(NotesListViewModel.class);
         notesListViewModel.list.observe(this, new Observer<List<Notes>>() {
             @Override

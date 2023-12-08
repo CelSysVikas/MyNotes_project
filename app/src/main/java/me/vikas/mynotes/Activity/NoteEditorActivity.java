@@ -70,9 +70,7 @@ public class NoteEditorActivity extends AppCompatActivity implements View.OnClic
     void emptyNote() {
 
         String currentDateTime = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
-
         dataBinding.tbNavigationBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.itemSave) {
